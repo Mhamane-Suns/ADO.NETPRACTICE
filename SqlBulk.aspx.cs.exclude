@@ -1,0 +1,68 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
+using System.Xml;
+
+public partial class SqlBulkCopy : System.Web.UI.Page
+{
+    private SqlConnection scn;
+
+    public string DestinationTableName { get; private set; }
+    public object ColumnMapping { get; private set; }
+
+    public SqlBulkCopy(SqlConnection scn)
+    {
+        this.scn = scn;
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        String connectionstring = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+        using (SqlConnection scn = new SqlConnection(connectionstring))
+        {
+            DataSet ds = new DataSet();
+            ds.ReadXml(Server.MapPath("~/Data.xml"));
+            DataTable depttable = ds.Tables["Department"];
+            DataTable Emptable = ds.Tables["Employee"];
+            using (SqlBulkCopy sb = new SqlBulkCopy(scn))
+            {
+                sb.DestinationTableName = "Departments";
+                sb.ColumnMapping.Add("id", "id");
+                sb.ColumnMapping.Add("Name", "Name");
+                sb.ColumnMapping.Add("Location", "Location");
+                sb.WriteToServer(depttable);
+
+
+            }
+
+            using (SqlBulkCopy sb = new SqlBulkCopy())
+            {
+                sb.DestinationTableName = "Employee";
+                sb.ColumnMapping.Add("id", "id");
+                sb.ColumnMapping.Add("Name", "Name");
+                sb.ColumnMapping.Add("Gender", "Gender");
+                sb.ColumnMapping.Add("Did", "Did");
+
+                sb.WriteToServer(Emptable);
+
+
+            }
+        }
+    }
+
+    private void WriteToServer(DataTable depttable)
+    {
+        throw new NotImplementedException();
+    }
+}

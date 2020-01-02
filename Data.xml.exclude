@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Data>
+  <Department id="1">
+    <Name>IT</Name>
+  <Location>Pune</Location>
+  </Department>
+
+  <Department id="2">
+    <Name>Technical Support</Name>
+  <Location>Mumbai</Location>
+  </Department>
+
+  <Department id="3">
+    <Name>Database</Name>
+  <Location>Hydrabad</Location>
+  </Department>
+
+  <Department id="4">
+    <Name>Banglore</Name>
+  <Location>Web server</Location>
+  </Department>
+
+ <Employee>
+  <Employee id="1">
+    <Name>Mahesh</Name>
+    <Gender>Male</Gender>
+    <Did>1</Did>
+  </Employee>
+
+<Employee id="2">
+    <Name>Avi</Name>
+    <Gender>Male</Gender>
+    <Did>2</Did>  </Employee>
+
+<Employee id="3">
+    <Name>Yogesh</Name>
+    <Gender>Male</Gender>
+        <Did>2</Did></Employee>
+
+<Employee id="4">
+    <Name>Hanmant</Name>
+    <Gender>Male</Gender>    
+<Did>3</Did>
+  </Employee>
+
+<Employee id="5">
+    <Name>Jamir</Name>
+    <Gender>Male</Gender>
+    <Did>3</Did> 
+</Employee>
+</Employee>
+  </Data>
